@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="container">
       <h2 style={{margin: "20px"}}>tweetnsour twitter events</h2>
-      <div style={{width: '800px'}}>
+      <div className="filters">
         <p style={{marginRight: "10px"}}><strong>filters:</strong></p>
         <button 
           style={onlyDMs ? {backgroundColor: "black", color: "white"} : {backgroundColor: "lightgray", color: "black"} } 

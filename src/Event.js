@@ -11,11 +11,11 @@ function Event({ event }) {
 
   return (
     <div className="event">
-      <div style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
-        <h3>{data.event}</h3>
-        <p><strong>created_timestamp: </strong>{data.time}</p>
+      <div style={{display: "flex", flexWrap: "wrap", width: "100%", justifyContent: "space-between"}}>
+        <h3 style={{marginBottom: "10px"}}>{data.event}</h3>
+        <p style={{marginBottom: "10px"}}><strong>created_timestamp: </strong>{data.time}</p>
       </div>
-      <p style={{marginTop: '10px'}}>for_user_id: {data.for_user_id}</p>
+      <p>for_user_id: {data.for_user_id}</p>
       <details style={{marginTop: "10px", cursor: "pointer"}}>
         <summary>event data</summary>
         <pre style={{fontSize: "16px"}}>{data.details}</pre>
