@@ -18,7 +18,7 @@ function Event({ event }) {
       <p>for_user_id: {data.for_user_id}</p>
       <details style={{marginTop: "10px", cursor: "pointer"}}>
         <summary>event data</summary>
-        <pre style={{fontSize: "16px", wordBreak: "break-wor"}}>{data.details}</pre>
+        <pre style={{fontSize: "16px", wordBreak: "break-word"}}>{data.details}</pre>
       </details>
     </div>
   )
