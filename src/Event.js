@@ -15,10 +15,10 @@ function Event({ event }) {
         <h3 style={{marginBottom: "10px"}}>{data.event}</h3>
         <p style={{marginBottom: "10px"}}><strong>created_timestamp: </strong>{data.time}</p>
       </div>
-      <p>for_user_id: {data.for_user_id}</p>
+      <p><strong>for_user_id:</strong> {data.for_user_id}</p>
       <details style={{marginTop: "10px", cursor: "pointer"}}>
         <summary>event data</summary>
-        <pre style={{fontSize: "16px", wordBreak: "break-word"}}>{data.details}</pre>
+        <pre style={{fontSize: "16px", whiteSpace: "pre-wrap"}}>{data.details}</pre>
       </details>
     </div>
   )
