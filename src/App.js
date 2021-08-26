@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'; 
-import Event from './Event.js';
-import compareEvents from './utils/compareEvents';
+import Board from './Board';
+import cleanEvent from './utils/cleanEvent';
 
 function App() {
   const [data, setData] = useState([]);
@@ -10,8 +10,9 @@ function App() {
   useEffect(() => {
     console.log("fetching events...")
     fetch("https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/tweetnsour-ppfir/service/events/incoming_webhook/get_events")
-      .then(resp => resp.json())
-      .then(data => setData(data))
+      .then(resp => resp.json()) // make json
+      .then(data => data.map(event => cleanEvent(event))) // clean event data 
+      .then(data => setData(data)); // set state
   }, [])
 
   return (
@@ -32,22 +33,8 @@ function App() {
           Mentions
         </button>
       </div>
-      { 
-        onlyDMs && onlyMentions // both filters
-        ? data.sort(compareEvents).filter(obj => Object.keys(obj).includes("direct_message_events") || Object.keys(obj).includes("tweet_create_events")).map((item, index) => (
-          <Event key={index} event={JSON.stringify(item)}/>)) 
-        
-        : onlyDMs // only direct messages
-        ? data.sort(compareEvents).filter(obj => Object.keys(obj).includes("direct_message_events")).map((item, index) => (
-          <Event key={index} event={JSON.stringify(item)}/>))
-
-        : onlyMentions // only mentions
-        ? data.sort(compareEvents).filter(obj => Object.keys(obj).includes("tweet_create_events")).map((item, index) => (
-          <Event key={index} event={JSON.stringify(item)}/>))
-          
-        : data.sort(compareEvents).map((item, index) => ( // all events
-        <Event key={index} event={JSON.stringify(item)}/>))
-      }
+      {/* display events  */}
+      <Board onlyDMs={onlyDMs} onlyMentions={onlyMentions} data={data}/> 
     </div>
   );
 }

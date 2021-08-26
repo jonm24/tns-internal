@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import './index.css';
-import cleanEvent from './utils/cleanEvent';
 
 function Event({ event }) {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    setData(cleanEvent(JSON.parse(event)));
+    setData(JSON.parse(event));
   }, [event])
 
   return (
